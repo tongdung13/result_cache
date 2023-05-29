@@ -53,10 +53,9 @@
     </script>
     <script>
         $(document).ready(function() {
-            const count = {!! json_encode($arrayId) !!};
-            for (const i of count) {
-                $('.' + i).on('click', function() {
-                    const id = i;
+            const arrId = {!! json_encode($arrayId) !!};
+            for (const id of arrId) {
+                $('.' + id).on('click', function() {
                     var url = "{{ route('blogs.show') }}";
                     // url = url.replace(':id', id);
 
