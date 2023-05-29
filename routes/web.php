@@ -20,4 +20,5 @@ Route::get('/', function () {
 
 Route::prefix('blogs')->group(function () {
     Route::get('', [BlogController::class, 'index'])->name('blogs.index');
+    Route::post('show/{id}', [BlogController::class, 'show'])->name('blogs.show');
 });

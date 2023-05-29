@@ -16,7 +16,14 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         $blogs = Blog::query(`/*+ RESULT_CACHE */`)->get();
-        return view('blogs.index', compact('blogs'));
+        $arrayId = [];
+        foreach ($blogs as $blog) {
+            array_push($arrayId, [
+                $blog->id
+            ]);
+        }
+
+        return view('blogs.index', compact('blogs', 'arrayId'));
     }
 
     /**
@@ -26,7 +33,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('blogs.create');
     }
 
     /**
@@ -48,7 +55,8 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        //
+        $blog = Blog::findOrFail($id);
+        return response()->json($blog);
     }
 
     /**

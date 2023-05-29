@@ -9,7 +9,7 @@ class Blog extends Model
 {
     use HasFactory;
 
-    protected $table = 'tb_mechanic_info_master';
+    protected $table = 'blogs';
     // protected $fillable = [
     //     'name',
     //     'image',
