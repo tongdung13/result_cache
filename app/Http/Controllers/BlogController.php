@@ -59,7 +59,11 @@ class BlogController extends Controller
         // $blog = Blog::findOrFail($id);
         $blog = Blog::query()
             ->where('id', $id)->first();
-        return response()->json($blog);
+
+        if (empty($blog)) {
+            return response()->json(['message' => 'Không tìm thấy sản phẩm']);
+        }
+        return response()->json(['data' => $blog]);
     }
 
     /**

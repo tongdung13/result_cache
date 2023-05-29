@@ -71,11 +71,15 @@
                         },
                         dataType: "json",
                         success: function(response) {
-                            if (response) {
-                                $('.modal-body').html('');
-                                var body = "<img src='{{ asset('image/123.jpeg') }}' class='card-img-top' ><br />";
-                                body += '<h2>' + response.name + '</h2><br />';
-                                body += '<h4>' + response.image + '</h4>'
+                            $('.modal-body').html('');
+                            if (response.data) {
+                                var body =
+                                    "<img src='{{ asset('image/123.jpeg') }}' class='card-img-top' ><br />";
+                                body += '<h2>' + response.data.name + '</h2><br />';
+                                body += '<h4>' + response.data.image + '</h4>'
+                                $('.modal-body').append(body);
+                            } else {
+                                var body = '<h3>' + response.message + '</h3>'
                                 $('.modal-body').append(body);
                             }
                         }
