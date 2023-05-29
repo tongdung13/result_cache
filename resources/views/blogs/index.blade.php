@@ -57,8 +57,8 @@
             for (const i of count) {
                 $('.' + i).on('click', function() {
                     const id = i;
-                    var url = "{{ route('blogs.show', ':id') }}";
-                    url = url.replace(':id', id);
+                    var url = "{{ route('blogs.show') }}";
+                    // url = url.replace(':id', id);
 
                     $.ajax({
                         type: "post",
@@ -66,7 +66,9 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         url: url,
-                        data: [],
+                        data: {
+                            id: id
+                        },
                         dataType: "json",
                         success: function(response) {
                             if (response) {
