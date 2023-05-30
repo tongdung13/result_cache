@@ -20,8 +20,9 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->name }}</h5>
                             <p class="card-text">{{ $item->image }}</p>
-                            <button type="button" class="btn btn-primary {{ $item->id }}" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">Go somewhere</button>
+                            <button type="button" class="btn btn-primary {{ $item->id }} get_id"
+                                data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#exampleModal">Go
+                                somewhere</button>
                         </div>
                     </div>
                 </div>
@@ -53,39 +54,70 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
     <script>
-        $(document).ready(function() {
-            const arrId = {!! json_encode($arrayId) !!};
-            for (const id of arrId) {
-                $('.' + id).on('click', function() {
-                    var url = "{{ route('blogs.show') }}";
-                    // url = url.replace(':id', id);
+        // $(document).ready(function() {
+        //     const arrId = {!! json_encode($arrayId) !!};
+        //     for (const id of arrId) {
+        //         $('.' + id).on('click', function() {
+        //             var url = "{{ route('blogs.show') }}";
+        //             // url = url.replace(':id', id);
 
-                    $.ajax({
-                        type: "post",
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        url: url,
-                        data: {
-                            id: id
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            $('.modal-body').html('');
-                            if (response.data) {
-                                var body =
-                                    "<img src='{{ asset('image/123.jpeg') }}' class='card-img-top' ><br />";
-                                body += '<h2>' + response.data.name + '</h2><br />';
-                                body += '<h4>' + response.data.image + '</h4>'
-                                $('.modal-body').append(body);
-                            } else {
-                                var body = '<h3>' + response.message + '</h3>'
-                                $('.modal-body').append(body);
-                            }
-                        }
-                    });
-                });
-            }
+        //             $.ajax({
+        //                 type: "post",
+        //                 headers: {
+        //                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //                 },
+        //                 url: url,
+        //                 data: {
+        //                     id: id
+        //                 },
+        //                 dataType: "json",
+        //                 success: function(response) {
+        //                     $('.modal-body').html('');
+        //                     if (response.data) {
+        //                         var body =
+        //                             "<img src='{{ asset('image/123.jpeg') }}' class='card-img-top' ><br />";
+        //                         body += '<h2>' + response.data.name + '</h2><br />';
+        //                         body += '<h4>' + response.data.image + '</h4>'
+        //                         $('.modal-body').append(body);
+        //                     } else {
+        //                         var body = '<h3>' + response.message + '</h3>'
+        //                         $('.modal-body').append(body);
+        //                     }
+        //                 }
+        //             });
+        //         });
+        //     }
+        // });
+
+        $(document).on('click', '.get_id', function() {
+            const id = $(this).attr('data-id');
+            var url = "{{ route('blogs.show') }}";
+            // url = url.replace(':id', id);
+
+            $.ajax({
+                type: "post",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: url,
+                data: {
+                    id: id
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('.modal-body').html('');
+                    if (response.data) {
+                        var body =
+                            "<img src='{{ asset('image/123.jpeg') }}' class='card-img-top' ><br />";
+                        body += '<h2>' + response.data.name + '</h2><br />';
+                        body += '<h4>' + response.data.image + '</h4>'
+                        $('.modal-body').append(body);
+                    } else {
+                        var body = '<h3>' + response.message + '</h3>'
+                        $('.modal-body').append(body);
+                    }
+                }
+            });
         });
     </script>
 </body>
