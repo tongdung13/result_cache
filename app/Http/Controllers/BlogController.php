@@ -15,7 +15,7 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-        $blogs = Blog::query(`/*+ RESULT_CACHE */`)->get();
+        $blogs = Blog::query(`/*+ RESULT_CACHE */`)->paginate(10);
         $arrayId = [];
         foreach ($blogs as $blog) {
             array_push($arrayId, [

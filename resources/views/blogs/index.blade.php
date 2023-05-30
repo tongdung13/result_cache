@@ -27,8 +27,9 @@
                 </div>
             @endforeach
         </div>
+        <hr>
+        <div>{{ $blogs->links('pagination::bootstrap-4') }}</div>
         <!-- The Modal -->
-        <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
