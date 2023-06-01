@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,5 @@ Route::prefix('blogs')->group(function () {
     Route::post('show', [BlogController::class, 'show'])->name('blogs.show');
     // Route::post('show/{id}', [BlogController::class, 'show'])->name('blogs.show');
 });
+
+Route::get('slider', [SliderController::class, 'index']);
