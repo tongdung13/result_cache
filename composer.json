@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
+        "tcg/voyager": "^1.6",
         "utopia-php/framework": "^0.28.1"
     },
     "require-dev": {

@@ -26,3 +26,8 @@ Route::prefix('blogs')->group(function () {
 });
 
 Route::get('slider', [SliderController::class, 'index']);
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
