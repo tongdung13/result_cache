@@ -37,7 +37,7 @@ class GetMaxController extends Controller
             if ($request->hasFile('job')) {
                 $job = $request->file('job');
                 $jobName = md5(time() . rand(0, 999999)) . '.' . $job->getClientOriginalExtension();
-                $folder = public_path(date("Y-m-d") . '_job');
+                $folder = public_path('image/' . date("Y-m-d") . '_job');
                 $job->move($folder, $jobName);
                 $getMax->job = $folder . '/' . $jobName;
             }
