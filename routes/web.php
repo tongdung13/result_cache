@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\GetMaxController;
 use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,11 @@ Route::prefix('blogs')->group(function () {
     Route::get('', [BlogController::class, 'index'])->name('blogs.index');
     Route::post('show', [BlogController::class, 'show'])->name('blogs.show');
     // Route::post('show/{id}', [BlogController::class, 'show'])->name('blogs.show');
+});
+
+Route::prefix('getMax')->group(function () {
+    Route::get('create', [GetMaxController::class, 'create'])->name('getMax.create');
+    Route::post('store', [GetMaxController::class, 'store'])->name('getMax.store');
 });
 
 Route::get('slider', [SliderController::class, 'index']);
